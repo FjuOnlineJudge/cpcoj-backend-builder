@@ -36,6 +36,17 @@ services:
       MYSQL_DATABASE: 'oj_0'
 ```
 
+* Need to rewrite `config.py`
+```py
+DIALECT = 'mysql'
+DRIVER = 'mysqldb'
+USERNAME = 'root'
+PASSWORD = 'root'
+HOST = 'db'
+PORT = '3306'
+DATABASE = 'oj_0'
+```
+
 ## Running
 
 ```
