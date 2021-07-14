@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  backend:
+    # image: fjuonlinejudge/cpcoj-backend-builder:latest # or docker.pkg.github.com/fjuonlinejudge/cpcoj-backend-builder/cpcoj-backend-builder:latest
+    build: .
+    ports: 
+      - "5000:5000"
+    links:
+      - db
+    volumes:
+      - ../:/usr/src/app
+    environment: 
+      FLASK_ENV: development
+      FLASK_APP: app.py
+      # TODO: fix naming
+      DIALECT: 'mysql'
+      DRIVER: 'mysqldb'
+      USERNAME: 'root'
+      PASSWORD: 'root'
+      HOST: 'db'
+      PORT: '3306'
+      DATABASE: 'oj_0'
+    depends_on:
+      - db 
+  db:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'oj_0'
+    volumes:
+      - ./data/db:/var/lib/mysql
