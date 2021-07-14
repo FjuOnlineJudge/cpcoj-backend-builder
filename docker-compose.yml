@@ -11,7 +11,7 @@ services:
       - ../:/usr/src/app
     environment: 
       FLASK_ENV: development
-      FLASK_APP: app.py
+      FLASK_APP: /usr/src/app/app.py
       # TODO: fix naming
       DIALECT: 'mysql'
       DRIVER: 'mysqldb'
